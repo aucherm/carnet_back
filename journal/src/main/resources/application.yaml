@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: fr_journal
+  datasource:
+    url: jdbc:postgresql://localhost:5432/carnet_lecture_super
+    username: mymac
+    password: 198208
+  flyway:
+    enabled: true
+    location: classpath:db/migration
+    baseline-on-migrate: true
+    validate-on-migrate: true
