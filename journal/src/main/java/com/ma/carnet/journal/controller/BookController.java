@@ -12,11 +12,9 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/books")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:5173")
 public class BookController {
 
     private final BookService bookService;
-@CrossOrigin
     @GetMapping
     public ResponseEntity<List<Book>> findAll() {
         return ResponseEntity.ok(bookService.findAll());
