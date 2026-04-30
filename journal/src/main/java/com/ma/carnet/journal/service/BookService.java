@@ -36,8 +36,10 @@ public class BookService {
     }
 
     public Book save(Book book) {
-        if (bookRepository.findByIsbn(book.getIsbn()).isPresent()) {
-            throw new RuntimeException("Un livre avec cet ISBN existe déjà");
+        if (book.getIdBook() == null) {
+            bookRepository.findByIsbn(book.getIsbn()).ifPresent(existing -> {
+                throw new RuntimeException("Un livre avec cet ISBN existe déjà");
+            });
         }
         return bookRepository.save(book);
     }
