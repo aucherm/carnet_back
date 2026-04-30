@@ -9,8 +9,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "reading_sheets",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"id_user", "id_book"}))
+@Table(name = "reading_sheets")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -30,10 +29,8 @@ public class ReadingSheet {
     private Book book;
 
     @Column(length = 20)
-    @Enumerated(EnumType.STRING)
-    private ReadingStatus status = ReadingStatus.TO_READ;
+    private String status = "to_read";
 
-    @Column
     private Float grade;
 
     @Column(columnDefinition = "TEXT")
@@ -45,4 +42,3 @@ public class ReadingSheet {
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
 }
-
