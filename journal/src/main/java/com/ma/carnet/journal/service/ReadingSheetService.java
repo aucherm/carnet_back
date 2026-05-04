@@ -49,15 +49,25 @@ public class ReadingSheetService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("Utilisateur introuvable"));
 
-        Book book = bookRepository.findByIsbn(request.getIsbn())
-                .orElseGet(() -> {
-                    Book newBook = new Book();
-                    newBook.setTitle(request.getTitle());
-                    newBook.setAuthor(request.getAuthor());
-                    newBook.setIsbn(request.getIsbn());
-                    newBook.setCover(request.getCover());
-                    return bookRepository.save(newBook);
-                });
+        Book book;
+        if (request.getIsbn() != null && !request.getIsbn().isBlank()) {
+            book = bookRepository.findByIsbn(request.getIsbn())
+                    .orElseGet(() -> {
+                        Book newBook = new Book();
+                        newBook.setTitle(request.getTitle());
+                        newBook.setAuthor(request.getAuthor());
+                        newBook.setIsbn(request.getIsbn());
+                        newBook.setCover(request.getCover());
+                        return bookRepository.save(newBook);
+                    });
+        } else {
+            Book newBook = new Book();
+            newBook.setTitle(request.getTitle());
+            newBook.setAuthor(request.getAuthor());
+            newBook.setIsbn("");
+            newBook.setCover(request.getCover());
+            book = bookRepository.save(newBook);
+        }
 
         ReadingSheet sheet = new ReadingSheet();
         sheet.setUser(user);
