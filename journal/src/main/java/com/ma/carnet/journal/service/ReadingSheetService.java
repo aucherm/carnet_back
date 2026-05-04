@@ -80,4 +80,8 @@ public class ReadingSheetService {
 
         return readingSheetRepository.save(sheet);
     }
+
+    public void delete(UUID id) {
+        readingSheetRepository.deleteById(id);
+    }
 }

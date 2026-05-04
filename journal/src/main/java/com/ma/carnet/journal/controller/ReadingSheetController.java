@@ -67,4 +67,13 @@ public class ReadingSheetController {
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable UUID id) {
+        if (readingSheetRepository.findById(id).isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        readingSheetService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }
