@@ -28,8 +28,9 @@ public class ReadingSheet {
     @JoinColumn(name = "id_book", nullable = false)
     private Book book;
 
+    @Enumerated(EnumType.STRING)
     @Column(length = 20)
-    private String status = "to_read";
+    private ReadingStatus status = ReadingStatus.TO_READ;
 
     private Float grade;
 
