@@ -21,7 +21,7 @@ public class Book {
     @Column(name = "id_book")
     private UUID idBook;
 
-    @Column(nullable = false, length = 20)
+    @Column(length = 20)
     private String isbn;
 
     @Column(name = "title", nullable = false, length = 255)

@@ -10,9 +10,18 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface ReadingSheetRepository extends JpaRepository<ReadingSheet, UUID> {
+public interface ReadingSheetRepository
+        extends JpaRepository<ReadingSheet, UUID> {
 
     List<ReadingSheet> findByUserIdUser(UUID idUser);
-    Optional<ReadingSheet> findByUserIdUserAndBookIdBook(UUID idUser, UUID idBook);
-    List<ReadingSheet> findByUserIdUserAndStatus(UUID idUser, ReadingStatus status);
+
+    Optional<ReadingSheet> findByUserIdUserAndBookIdBook(
+            UUID idUser,
+            UUID idBook
+    );
+
+    List<ReadingSheet> findByUserIdUserAndStatus(
+            UUID idUser,
+            ReadingStatus status
+    );
 }
